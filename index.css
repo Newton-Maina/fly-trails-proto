@@ -1,0 +1,73 @@
+/* Sophisticated Animation Engine */
+.reveal,
+.reveal-zoom,
+.reveal-left,
+.reveal-right,
+.reveal-up {
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform, opacity;
+}
+
+.reveal { transform: translateY(30px); }
+.reveal-zoom { transform: scale(0.95) translateY(30px); }
+.reveal-left { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+.reveal-up { transform: translateY(50px); }
+
+.reveal.active,
+.reveal-zoom.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-up.active {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Background Motion Rule: Fixed images */
+.bg-fixed-layer {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Parallax Utilities */
+.parallax-layer {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Section Overlap Utility */
+.section-overlap {
+  margin-top: -4rem;
+  position: relative;
+  z-index: 20;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  /* Ensure no transform here to break fixed background */
+  transform: none !important; 
+}
+
+@media (min-width: 768px) {
+  .section-overlap {
+    margin-top: -6rem;
+    border-top-left-radius: 6rem;
+    border-top-right-radius: 6rem;
+  }
+}
+
+/* Custom shadow for overlapping sections */
+.shadow-overlap {
+  box-shadow: 0 -20px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Utilities for hiding scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
