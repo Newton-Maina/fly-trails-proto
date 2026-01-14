@@ -234,10 +234,21 @@ const Hero: React.FC = () => {
                 </div>
         </div>
 
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-30 opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-pointer group">
+            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/80 group-hover:text-white transition-colors">Scroll to browse</span>
+            <div className="w-12 h-px bg-white/30 group-hover:w-20 group-hover:bg-[#f29100] transition-all duration-500"></div>
+            <div className="animate-bounce mt-1">
+                <svg className="w-5 h-5 text-white group-hover:text-[#f29100] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+
       </div>
       
       {/* Social Proof */}
-      <div className="absolute bottom-8 w-full flex justify-center md:justify-end md:right-12 z-20 opacity-90 pointer-events-none">
+      <div className="hidden md:flex absolute bottom-8 w-full justify-center md:justify-end md:right-12 z-20 opacity-90 pointer-events-none">
           <div className="flex items-center gap-4 bg-black/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
               <div className="flex -space-x-3">
                   {[1,2,3].map(i => (
