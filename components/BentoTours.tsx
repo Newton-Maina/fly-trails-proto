@@ -7,7 +7,7 @@ const tours = [
     price: "$3,400", 
     duration: "7 Days", 
     category: "Kenya", 
-    imageUrl: "https://images.unsplash.com/photo-1534701292150-5cb52026771e?q=80&w=2070&auto=format&fit=crop", 
+    imageUrl: "/great-migration.jpg", 
     // Row 1: Spans 2 cols
     size: 'md:col-span-2',
     excerpt: "Witness millions of wildebeest crossing the Mara River in the world's greatest wildlife spectacle."
@@ -29,7 +29,7 @@ const tours = [
     price: "$1,800", 
     duration: "4 Days", 
     category: "Zambia", 
-    imageUrl: "https://images.unsplash.com/photo-1603513369806-0a6727c9d949?q=80&w=2070&auto=format&fit=crop", 
+    imageUrl: "/victoria-falls.jpg", 
     // Row 1: 1 col
     size: 'col-span-1',
     excerpt: "Feel the spray of 'The Smoke that Thunders' on a thrilling adventure tour."
@@ -62,7 +62,7 @@ const tours = [
     price: "$3,800", 
     duration: "6 Days", 
     category: "Botswana", 
-    imageUrl: "https://images.unsplash.com/photo-1516422317184-2153b3d169a8?q=80&w=2070&auto=format&fit=crop", 
+    imageUrl: "/okavango-delta.jpg", 
     // Row 2: 1 col
     size: 'col-span-1',
     excerpt: "Navigate the waterways in a mokoro and see wildlife in a lush oasis."

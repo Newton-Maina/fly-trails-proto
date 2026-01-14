@@ -19,7 +19,7 @@ const TravelStories: React.FC = () => {
           <div className="relative group cursor-pointer reveal-zoom">
             <div className="overflow-hidden rounded-sm shadow-2xl h-[400px] md:h-[550px]">
               <img 
-                src="https://images.unsplash.com/photo-1549216068-154675549887?q=80&w=2070&auto=format&fit=crop" 
+                src="/safari-journal.jpg" 
                 alt="Story cover" 
                 className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
               />

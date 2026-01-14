@@ -45,7 +45,7 @@ const OurStory: React.FC = () => {
              {/* Main Image */}
              <div className="relative z-10 overflow-hidden rounded-sm shadow-2xl transform transition-transform duration-700 group-hover:-translate-y-2">
                 <img 
-                  src="https://images.unsplash.com/photo-1547471080-7541fbe93655?q=80&w=2068&auto=format&fit=crop" 
+                  src="/safari-vehicle.jpg" 
                   alt="Safari Vehicle in Kenya" 
                   className="w-full h-auto object-cover aspect-[4/3]"
                 />
