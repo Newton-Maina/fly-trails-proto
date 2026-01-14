@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import OurStory from './components/OurStory';
 import BentoTours from './components/BentoTours';
+import Experience from './components/Experience';
+import ScrollShowcase from './components/ScrollShowcase';
 import Destinations from './components/Destinations';
 import TravelStories from './components/TravelStories';
 import Reviews from './components/Reviews';
@@ -74,7 +76,9 @@ const App: React.FC = () => {
         <div className="relative z-[50]"><Hero /></div>
         <div className="relative z-[0]"><OurStory /></div>
         <div className="relative z-[10]"><BentoTours /></div>
-        <div className="relative z-[20]"><Destinations /></div>
+        <div className="relative z-[15]"><Experience /></div>
+        <div className="relative z-[20]"><ScrollShowcase /></div>
+        <div className="relative z-[25]"><Destinations /></div>
         <div className="relative z-[30]"><TravelStories /></div>
         <div className="relative z-[40]"><Reviews /></div>
         <div className="relative z-[50]"><Newsletter /></div>

@@ -5,7 +5,7 @@ const destinations = [
     id: '1',
     name: "Coastal Kenya",
     region: "East Africa",
-    imageUrl: "https://images.unsplash.com/photo-1543187289-46747df31505?q=80&w=2070&auto=format&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2070",
     desc: "Explore historic Swahili towns like Lamu and relax on the pristine white sands of Watamu."
   },
   {
@@ -19,14 +19,14 @@ const destinations = [
     id: '3',
     name: "Nile River Valley",
     region: "Egypt",
-    imageUrl: "https://images.unsplash.com/photo-1566191763787-86561f978e82?q=80&w=2069&auto=format&fit=crop",
+    imageUrl: "/nile-river.jpg",
     desc: "Cruise through history from Luxor to Aswan, witnessing temples that have stood for millennia."
   },
   {
     id: '4',
     name: "Victoria Falls",
     region: "Zambia/Zimbabwe",
-    imageUrl: "https://images.unsplash.com/photo-1603513369806-0a6727c9d949?q=80&w=2070&auto=format&fit=crop",
+    imageUrl: "/victoria-falls.jpg",
     desc: "The Smoke that Thunders. Experience the raw power of the world's largest sheet of falling water."
   }
 ];
@@ -65,24 +65,28 @@ const Destinations: React.FC = () => {
           {/* Right Column Container */}
           <div className="lg:w-2/3 relative reveal-left" style={{ transitionDelay: '200ms' }}>
             
-            {/* Fixed Navigation Buttons - Positioned relative to the column, independent of scroll */}
-            <div className="absolute -top-24 right-0 lg:top-0 lg:right-0 z-30 flex gap-4">
-              <button 
-                onClick={() => scroll(-400)}
-                className="w-14 h-14 rounded-full bg-white border border-slate-100 text-[#0c3154] flex items-center justify-center hover:bg-[#0c3154] hover:text-white transition-all shadow-xl group"
-              >
-                <svg className="w-6 h-6 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
-              </button>
-              <button 
-                onClick={() => scroll(400)}
-                className="w-14 h-14 rounded-full bg-[#0c3154] text-white flex items-center justify-center hover:bg-slate-700 transition-all shadow-xl group"
-              >
-                <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
-              </button>
+            {/* Header / Nav Controls */}
+            <div className="flex justify-end mb-8 pr-2">
+                <div className="flex gap-4">
+                <button 
+                    onClick={() => scroll(-400)}
+                    className="w-14 h-14 rounded-full bg-white border border-slate-100 text-[#0c3154] flex items-center justify-center hover:bg-[#0c3154] hover:text-white transition-all shadow-xl group z-30"
+                    aria-label="Scroll Left"
+                >
+                    <svg className="w-6 h-6 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button 
+                    onClick={() => scroll(400)}
+                    className="w-14 h-14 rounded-full bg-[#0c3154] text-white flex items-center justify-center hover:bg-slate-700 transition-all shadow-xl group z-30"
+                    aria-label="Scroll Right"
+                >
+                    <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+                </div>
             </div>
 
             {/* Scrollable Container */}
-            <div ref={scrollContainerRef} className="flex gap-8 overflow-x-auto hide-scrollbar pb-20 snap-x pt-20 lg:pt-24 pl-2">
+            <div ref={scrollContainerRef} className="flex gap-8 overflow-x-auto hide-scrollbar pb-20 snap-x pl-2">
                 {destinations.map((dest) => (
                 <div key={dest.id} className="flex-shrink-0 w-[300px] md:w-[400px] group cursor-pointer snap-start">
                     <div className="relative mb-10">

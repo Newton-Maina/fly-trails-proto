@@ -7,13 +7,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4 group cursor-pointer">
-              <div className="bg-white p-2 rounded shadow-lg border border-slate-100">
-                 <div className="bg-[#f29100] w-10 h-10 flex items-center justify-center text-white text-xl font-black">F</div>
-              </div>
-              <div>
-                <div className="text-[10px] font-black leading-none tracking-[0.25em] uppercase text-slate-400">Premium</div>
-                <div className="text-2xl font-black italic leading-none uppercase tracking-tighter text-[#222] mt-1">Fly Trails</div>
-              </div>
+              <img src="/flytrails-logo.png" alt="Fly Trails Logo" className="w-48 h-24 object-contain drop-shadow-md" />
             </div>
             <p className="text-xs text-slate-500 font-medium leading-relaxed max-w-xs">
               Crafting authentic African journeys for the modern explorer since 2012. 
