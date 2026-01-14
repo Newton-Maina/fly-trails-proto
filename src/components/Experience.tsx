@@ -1,4 +1,5 @@
 import React from 'react';
+import { experienceData } from '../data/experience';
 
 const Experience: React.FC = () => {
   return (
@@ -14,10 +15,10 @@ const Experience: React.FC = () => {
             <div className="relative w-full max-w-[400px] aspect-[9/16] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] transform transition-all duration-700 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)]">
                 <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
 
-                {/* Premium Vimeo Video embed, perfectly fitted for Reel aspect ratio */}
+                {/* Premium Vimeo Video embed */}
                 <div className="absolute inset-0 w-full h-full">
                     <iframe 
-                        src="https://player.vimeo.com/video/1154265649?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1" 
+                        src={experienceData.video.src} 
                         className="w-[100.5%] h-[100.5%] pointer-events-none object-cover"
                         style={{ width: '100%', height: '100%', transform: 'scale(1.1)' }}
                         frameBorder="0" 
@@ -29,7 +30,7 @@ const Experience: React.FC = () => {
                 {/* Floating Video Content Overlay */}
                 <div className="absolute top-6 left-6 md:top-8 md:left-8 z-20">
                     <span className="bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest">
-                        Live the Moment
+                        {experienceData.video.overlayLabel}
                     </span>
                 </div>
 
@@ -39,8 +40,8 @@ const Experience: React.FC = () => {
                             <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
-                            <p className="text-white text-base md:text-lg font-bold">Dawn Patrol</p>
-                            <p className="text-white/80 text-[10px] md:text-xs">06:00 AM • Masai Mara</p>
+                            <p className="text-white text-base md:text-lg font-bold">{experienceData.video.caption.title}</p>
+                            <p className="text-white/80 text-[10px] md:text-xs">{experienceData.video.caption.time}</p>
                         </div>
                      </div>
                 </div>
@@ -55,43 +56,36 @@ const Experience: React.FC = () => {
             
             {/* Text Content */}
             <div className="space-y-6">
-                <span className="text-[#f29100] text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] reveal block">The Experience</span>
+                <span className="text-[#f29100] text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] reveal block">{experienceData.subtitle}</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black italic text-[#222] leading-tight reveal" style={{ transitionDelay: '100ms' }}>
-                    Not Just a Trip, <br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#222] to-slate-500">A Transformation.</span>
+                    {experienceData.title[0]} <br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#222] to-slate-500">{experienceData.title[1]}</span>
                 </h2>
                 <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-xl reveal" style={{ transitionDelay: '200ms' }}>
-                    We believe in travel that touches the soul. From private bush breakfasts to silent balloon safaris over the migration, every moment is curated to connect you deeply with the wild.
+                    {experienceData.description}
                 </p>
                 
                 <div className="flex gap-8 pt-4 reveal" style={{ transitionDelay: '300ms' }}>
-                    <div>
-                        <p className="text-2xl md:text-3xl font-black text-[#222]">15+</p>
-                        <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Years Experience</p>
-                    </div>
-                    <div className="w-px h-10 md:h-12 bg-slate-100"></div>
-                    <div>
-                        <p className="text-2xl md:text-3xl font-black text-[#222]">500+</p>
-                        <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Bespoke Journeys</p>
-                    </div>
+                    {experienceData.stats.map((stat, i) => (
+                        <React.Fragment key={i}>
+                            <div>
+                                <p className="text-2xl md:text-3xl font-black text-[#222]">{stat.value}</p>
+                                <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">{stat.label}</p>
+                            </div>
+                            {i < experienceData.stats.length - 1 && <div className="w-px h-10 md:h-12 bg-slate-100"></div>}
+                        </React.Fragment>
+                    ))}
                 </div>
             </div>
 
             {/* Mini Bento Grid - Responsive */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 h-auto md:h-48 reveal-up" style={{ transitionDelay: '400ms' }}>
-                <div className="col-span-1 h-40 md:h-auto rounded-2xl overflow-hidden relative group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1534759846116-5799c33ce22a?q=80&w=1950" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Detail 1" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
-                </div>
-                <div className="col-span-1 h-40 md:h-auto rounded-2xl overflow-hidden relative group cursor-pointer md:mt-8">
-                     <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1887" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Detail 2" />
-                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
-                </div>
-                {/* Hide 3rd image on mobile if it clutters, or make it span full width */}
-                <div className="hidden md:block col-span-1 rounded-2xl overflow-hidden relative group cursor-pointer">
-                     <img src="https://images.unsplash.com/photo-1575550959106-5a7defe28b56?q=80&w=2070" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Detail 3" />
-                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
-                </div>
+                {experienceData.bentoImages.map((src, i) => (
+                    <div key={i} className={`col-span-1 h-40 md:h-auto rounded-2xl overflow-hidden relative group cursor-pointer ${i === 1 ? 'md:mt-8' : ''} ${i === 2 ? 'hidden md:block' : ''}`}>
+                        <img src={src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={`Detail ${i+1}`} />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+                    </div>
+                ))}
             </div>
 
         </div>

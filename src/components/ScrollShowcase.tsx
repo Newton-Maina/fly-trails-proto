@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { showcaseSlides as slides } from '../data/showcase';
 
 const ScrollShowcase: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,24 +30,6 @@ const ScrollShowcase: React.FC = () => {
         cancelAnimationFrame(rafId);
     };
   }, []);
-
-  const slides = [
-    {
-      image: "https://images.unsplash.com/photo-1534759846116-5799c33ce22a?q=80&w=2070", // Hot Air Balloon
-      title: "Ascend",
-      desc: "Float above the endless plains at sunrise."
-    },
-    {
-      image: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?q=80&w=2069", // Leopard/Distinct
-      title: "Witness",
-      desc: "The greatest show on earth unfolds."
-    },
-    {
-      image: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=2070", // Kilimanjaro / Landscape
-      title: "Conquer",
-      desc: "Stand on the roof of Africa."
-    }
-  ];
 
   return (
     <section ref={containerRef} className="relative h-[450vh] bg-white">
@@ -95,20 +78,20 @@ const ScrollShowcase: React.FC = () => {
                         alt={slide.title} 
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute inset-0 bg-black/40"></div>
                 </div>
             );
          })}
 
          {/* Content Layer (Stays Centered) */}
-         <div className="relative z-50 text-center text-white mix-blend-overlay px-4">
-            <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.5em] mb-4 drop-shadow-lg">The Journey</p>
+         <div className="relative z-50 text-center text-white px-4">
+            <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.5em] mb-4 drop-shadow-lg text-white/80">The Journey</p>
             <div className="overflow-hidden">
-                <h2 className="text-5xl md:text-8xl font-serif font-black italic tracking-tighter drop-shadow-2xl transition-transform duration-700 ease-out transform translate-y-0">
+                <h2 className="text-5xl md:text-8xl font-serif font-black italic tracking-tighter drop-shadow-2xl transition-transform duration-700 ease-out transform translate-y-0 text-white">
                     {progress < 0.33 ? slides[0].title : progress < 0.66 ? slides[1].title : slides[2].title}
                 </h2>
             </div>
-            <p className="text-lg md:text-2xl font-medium mt-4 opacity-90 drop-shadow-lg max-w-lg mx-auto leading-relaxed">
+            <p className="text-lg md:text-2xl font-medium mt-4 text-white/90 drop-shadow-lg max-w-lg mx-auto leading-relaxed">
                 {progress < 0.33 ? slides[0].desc : progress < 0.66 ? slides[1].desc : slides[2].desc}
             </p>
          </div>

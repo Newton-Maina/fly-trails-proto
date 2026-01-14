@@ -1,4 +1,5 @@
 import React from 'react';
+import { aboutData } from '../data/about';
 
 const OurStory: React.FC = () => {
   return (
@@ -18,24 +19,25 @@ const OurStory: React.FC = () => {
         <div className="lg:w-1/2 text-[#222] reveal-right">
           <div className="flex items-center gap-4 mb-8">
             <span className="w-12 h-0.5 bg-[#e11d48]"></span>
-            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#e11d48]">Since 2012</span>
+            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#e11d48]">Since {aboutData.since}</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-serif font-black italic mb-10 leading-tight tracking-tight">Our Story</h2>
+          <h2 className="text-5xl md:text-7xl font-serif font-black italic mb-10 leading-tight tracking-tight">{aboutData.title}</h2>
           <div className="space-y-6 mb-12 max-w-xl">
-            <p className="text-[16px] md:text-[17px] leading-loose font-medium text-slate-600">
-              Born in the heart of Nairobi, <span className="text-[#f29100] font-bold">Fly Trails</span> began with a simple mission: to show the world the raw, untamed beauty of Africa.
-            </p>
-            <p className="text-[16px] md:text-[17px] leading-loose text-slate-500">
-              From the rolling plains of the Masai Mara to the ancient wonders of Egypt, we craft bespoke journeys that go beyond the guidebook. Our local guides ensure you experience the authentic spirit of the continent.
-            </p>
+            {aboutData.paragraphs.map((p, i) => (
+                <p key={i} className={`text-[16px] md:text-[17px] leading-loose ${i === 0 ? 'font-medium text-slate-600' : 'text-slate-500'}`}>
+                    {i === 0 ? (
+                        <>Born in the heart of Nairobi, <span className="text-[#f29100] font-bold">Fly Trails</span> began with a simple mission: to show the world the raw, untamed beauty of Africa.</>
+                    ) : p}
+                </p>
+            ))}
             <div className="bg-[#fdf5e6] p-6 rounded-sm border-l-4 border-[#f29100] mt-4">
               <p className="text-[16px] italic text-[#222] font-semibold leading-relaxed">
-                "Africa is not just a place to visit, it is a feeling to be experienced."
+                "{aboutData.quote}"
               </p>
             </div>
           </div>
           <button className="bg-[#0c3154] text-white px-10 py-4 rounded-full text-[13px] font-extrabold uppercase tracking-widest shadow-xl transition-all hover:bg-slate-700 hover:scale-105">
-            MEET THE GUIDES
+            {aboutData.cta}
           </button>
         </div>
 
@@ -45,8 +47,8 @@ const OurStory: React.FC = () => {
              {/* Main Image */}
              <div className="relative z-10 overflow-hidden rounded-sm shadow-2xl transform transition-transform duration-700 group-hover:-translate-y-2">
                 <img 
-                  src="/safari-vehicle.jpg" 
-                  alt="Safari Vehicle in Kenya" 
+                  src={aboutData.image.src} 
+                  alt={aboutData.image.alt} 
                   className="w-full h-auto object-cover aspect-[4/3]"
                 />
                 {/* Overlay gradient */}
@@ -54,8 +56,8 @@ const OurStory: React.FC = () => {
                 
                 {/* Badge on image */}
                 <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-sm">
-                   <div className="text-white text-[10px] font-black uppercase tracking-widest mb-1">Current Expedition</div>
-                   <div className="text-white text-xl font-serif italic">Masai Mara, Kenya</div>
+                   <div className="text-white text-[10px] font-black uppercase tracking-widest mb-1">{aboutData.image.badge.label}</div>
+                   <div className="text-white text-xl font-serif italic">{aboutData.image.badge.location}</div>
                 </div>
              </div>
 

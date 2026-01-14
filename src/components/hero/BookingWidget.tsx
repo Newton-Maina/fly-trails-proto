@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { HeroDestination } from '../../types';
 
-const Hero: React.FC = () => {
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  
-  // Custom Booking State
+interface BookingWidgetProps {
+  isBookingOpen: boolean;
+  setIsBookingOpen: (isOpen: boolean) => void;
+  destinations: HeroDestination[];
+}
+
+const BookingWidget: React.FC<BookingWidgetProps> = ({ isBookingOpen, setIsBookingOpen, destinations }) => {
   const [destinationOpen, setDestinationOpen] = useState(false);
   const [selectedDestination, setSelectedDestination] = useState("");
   
@@ -14,27 +17,6 @@ const Hero: React.FC = () => {
   const [dateOpen, setDateOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
-  const heroTexts = [
-    { title: "Wilderness", subtitle: "Awaits You." },
-    { title: "Nature's", subtitle: "True Rhythm." },
-    { title: "Untamed", subtitle: "Beauty Calls." },
-    { title: "Your Own", subtitle: "Safari Story." }
-  ];
-
-  const destinations = [
-    { name: "Masai Mara", country: "Kenya", image: "https://images.unsplash.com/photo-1516422317184-2153b3d169a8?q=80&w=200" },
-    { name: "Serengeti", country: "Tanzania", image: "https://images.unsplash.com/photo-1516422317184-2153b3d169a8?q=80&w=200" }, 
-    { name: "Okavango", country: "Botswana", image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=200" },
-    { name: "Kruger", country: "South Africa", image: "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?q=80&w=200" }
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTextIndex((prev) => (prev + 1) % heroTexts.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   // Simple Custom Calendar Logic
   const generateCalendarDays = () => {
     const days = [];
@@ -43,55 +25,8 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden rounded-b-[2rem] md:rounded-b-[5rem] shadow-2xl z-40 bg-black">
-      
-      {/* Mobile Fallback Background (High Quality Image) */}
-      <div className="absolute inset-0 z-0 md:hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=2070&auto=format&fit=crop" 
-            className="w-full h-full object-cover" 
-            alt="Hero Background"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40"></div>
-      </div>
-
-      {/* Desktop Cinematic Video Background - Perfectly Centered & Covering */}
-      <div className="hidden md:block absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-black/30 z-10"></div>
-        {/* Aspect Ratio Enforcer for Cover */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77vh] min-w-full min-h-full h-[56.25vw]">
-            <iframe 
-                className="w-full h-full pointer-events-none object-cover"
-                src="https://www.youtube.com/embed/jEsrsDVkuVY?autoplay=1&mute=1&controls=0&loop=1&playlist=jEsrsDVkuVY&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&vq=hd1080&start=8" 
-                title="Hero Video"
-                allow="autoplay; encrypted-media" 
-                allowFullScreen
-            ></iframe>
-        </div>
-      </div>
-
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-12 flex flex-col items-center text-center h-full justify-center pb-20 md:pb-0">
-        
-        {/* Main Typography */}
-        <div className="mb-12 md:mb-16 w-full max-w-5xl flex flex-col items-center min-h-[250px] md:min-h-[300px] justify-center relative">
-            {heroTexts.map((text, index) => (
-                <div 
-                    key={index} 
-                    className={`transition-all duration-[1500ms] ease-out absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4 ${index === currentTextIndex ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-90 blur-xl'}`}
-                >
-                    <h1 className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-[8rem] font-serif font-black italic leading-[1.1] md:leading-[0.9] tracking-tighter drop-shadow-2xl mb-4 md:mb-6 break-words md:whitespace-nowrap">
-                      {text.title} <br className="hidden md:block" />
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f29100] via-white to-white">{text.subtitle}</span>
-                    </h1>
-                </div>
-            ))}
-        </div>
-
-        <p className="text-slate-200 text-sm md:text-xl font-medium leading-relaxed max-w-xs md:max-w-xl mx-auto drop-shadow-md mb-12 opacity-90 px-4">
-            Bespoke itineraries crafted for the discerning traveler.
-        </p>
-
-        {/* Minimized Trigger Button */}
+    <>
+      {/* Minimized Trigger Button */}
         <button 
             onClick={() => setIsBookingOpen(true)}
             className={`group bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white h-14 md:h-16 px-8 md:px-10 rounded-full flex items-center gap-4 transition-all duration-300 shadow-2xl hover:scale-105 ${isBookingOpen ? 'opacity-0 pointer-events-none translate-y-10' : 'opacity-100 translate-y-0'}`}
@@ -103,13 +38,12 @@ const Hero: React.FC = () => {
         </button>
 
         {/* Premium Expanded Booking Modal */}
-        {/* Removing overflow-hidden to allow dropdowns to pop out */}
         <div className={`fixed inset-0 flex items-center justify-center z-[200] transition-all duration-500 px-4 ${isBookingOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
                 <div className="absolute inset-0 bg-black/40" onClick={() => setIsBookingOpen(false)}></div>
                 
                 <div className={`w-full max-w-4xl bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl transform transition-all duration-500 flex flex-col relative ${isBookingOpen ? 'scale-100 translate-y-0' : 'scale-90 translate-y-10'}`}>
                    
-                   {/* Modal Header - Rounded corners handling manually since parent doesn't have overflow-hidden */}
+                   {/* Modal Header */}
                    <div className="flex justify-between items-center p-6 md:p-4 border-b border-slate-100 bg-slate-50/50 rounded-t-[2rem] md:rounded-t-[2.5rem]">
                        <div>
                             <span className="text-[#f29100] text-[10px] font-black uppercase tracking-widest">Plan Your Trip</span>
@@ -179,7 +113,7 @@ const Hero: React.FC = () => {
                                    </div>
                                </div>
                                <div className="grid grid-cols-7 gap-1 text-center mb-2">
-                                   {['S','M','T','W','T','F','S'].map(d => <span key={d} className="text-[10px] text-slate-400 font-bold">{d}</span>)}
+                                   {['S','M','T','W','T','F','S'].map((d, i) => <span key={i} className="text-[10px] text-slate-400 font-bold">{d}</span>)}
                                </div>
                                <div className="grid grid-cols-7 gap-1">
                                    {generateCalendarDays().map(d => (
@@ -223,7 +157,7 @@ const Hero: React.FC = () => {
 
                    </div>
                    
-                   {/* Modal Footer - Rounded corners handling manual */}
+                   {/* Modal Footer */}
                    <div className="p-6 md:p-6 bg-slate-50 flex justify-end rounded-b-[2rem] md:rounded-b-[2.5rem]">
                        <button className="w-full md:w-auto bg-[#f29100] hover:bg-[#d98200] text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-sm shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-3">
                            Check Availability
@@ -233,38 +167,8 @@ const Hero: React.FC = () => {
 
                 </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-30 opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-pointer group">
-            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/80 group-hover:text-white transition-colors">Scroll to browse</span>
-            <div className="w-12 h-px bg-white/30 group-hover:w-20 group-hover:bg-[#f29100] transition-all duration-500"></div>
-            <div className="animate-bounce mt-1">
-                <svg className="w-5 h-5 text-white group-hover:text-[#f29100] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </div>
-        </div>
-
-      </div>
-      
-      {/* Social Proof */}
-      <div className="hidden md:flex absolute bottom-8 w-full justify-center md:justify-end md:right-12 z-20 opacity-90 pointer-events-none">
-          <div className="flex items-center gap-4 bg-black/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
-              <div className="flex -space-x-3">
-                  {[1,2,3].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border border-[#f29100] bg-slate-200 overflow-hidden">
-                          <img src={`https://i.pravatar.cc/100?img=${i + 15}`} alt="User" className="w-full h-full object-cover" />
-                      </div>
-                  ))}
-              </div>
-              <div className="text-white text-[10px] font-bold leading-tight text-left">
-                  <span className="text-[#f29100] block text-sm">4.9/5</span>
-                  Trusted by 10k+ Travelers
-              </div>
-          </div>
-      </div>
-    </section>
+    </>
   );
 };
 
-export default Hero;
+export default BookingWidget;
