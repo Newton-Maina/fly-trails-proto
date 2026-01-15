@@ -12,7 +12,7 @@ Fly Trails Travels is a high-end travel experience platform designed to showcase
 
 This prototype employs several advanced frontend techniques to achieve its premium feel:
 
-### 1. Sophisticated Animation Engine
+### 1. Animation Engine
 Instead of standard transitions, the project uses a custom-built animation system:
 - **Intersection Observer:** A robust observer in `App.tsx` monitors scroll position and triggers specific animation classes (`reveal-zoom`, `reveal-left`, `reveal-right`, `reveal-up`) with custom cubic-bezier timing functions for a "snappy" yet elegant entrance.
 - **Staggered Motion:** Grid elements and lists use calculated delays to enter the viewport sequentially, creating a choreographed visual flow.
