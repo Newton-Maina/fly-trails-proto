@@ -103,7 +103,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({
                 <div key={item} className="relative group" 
                      onMouseEnter={() => handleMouseEnter(item)}
                      onMouseLeave={handleMouseLeave}>
-                    <a href="#" className="text-slate-900 text-[11px] md:text-[13px] font-bold uppercase tracking-widest hover:text-[#f29100] transition-colors py-6">
+                    <a href="#" className="text-[#3c4a3e] text-[11px] md:text-[13px] font-bold uppercase tracking-widest hover:text-[#f29100] transition-colors py-6">
                     {item}
                     </a>
                     <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-[#f29100] transition-transform duration-300 origin-left ${hoveredItem === item ? 'scale-x-100' : 'scale-x-0'}`}></span>
@@ -141,7 +141,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({
                             {menuItems[hoveredItem as keyof typeof menuItems].links.map((link, idx) => (
                                 <li key={idx} className="group/item">
                                     <a href="#" className="flex items-center justify-between py-2 group-hover/item:translate-x-2 transition-transform duration-300">
-                                        <span className="text-slate-600 font-bold text-sm group-hover/item:text-[#222] transition-colors">{link}</span>
+                                        <span className="text-[#4a5848] font-bold text-sm group-hover/item:text-[#f29100] transition-colors">{link}</span>
                                         <svg className="w-4 h-4 text-[#f29100] opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                     </a>
                                 </li>
@@ -149,7 +149,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({
                         </ul>
 
                         <div className="mt-auto pt-10">
-                            <a href="#" className="inline-block text-[11px] font-black uppercase tracking-widest text-[#222] border-b-2 border-slate-200 pb-1 hover:border-[#f29100] hover:text-[#f29100] transition-colors">
+                            <a href="#" className="inline-block text-[11px] font-black uppercase tracking-widest text-[#3c4a3e] border-b-2 border-slate-200 pb-1 hover:border-[#f29100] hover:text-[#f29100] transition-colors">
                                 Browse All {hoveredItem.toLowerCase().replace(/^\w/, c => c.toUpperCase())}
                             </a>
                         </div>
