@@ -34,7 +34,7 @@ const BentoTours: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               
               <div className="absolute top-5 left-5">
-                 <span className="inline-block bg-[#e11d48] text-white text-[9px] font-black px-3 py-1 rounded-sm uppercase tracking-widest shadow-md">
+                 <span className="inline-block bg-[#3c4a3e] text-white text-[9px] font-black px-3 py-1 rounded-sm uppercase tracking-widest shadow-md">
                   {tour.category}
                  </span>
               </div>
